@@ -1,12 +1,19 @@
 package coffeeMachineSimulator;
 
+import coffeeMachineSimulator.Connection.MyJDBC;
+import coffeeMachineSimulator.coffee_type.Cup;
+import coffeeMachineSimulator.utility.Util;
+
+import javax.crypto.Mac;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
+        MyJDBC.Connection();
         Scanner scanner=new Scanner(System.in);
+        /*
         int numOfCups;
         int waterAmount=0;
         int milkAmount=0;
@@ -61,6 +68,53 @@ public class Main {
                 &&(MachineCapacity.getTotalWater()==0 || MachineCapacity.getTotalWater()<200)) {
             System.out.println("No, I can make only 0 cups of coffee");
         }
+
+         */
+
+        MachineCapacity machineCapacity=new MachineCapacity(400,120,540,550,9);
+        MachineCapacity.machineInfo(true);
+        String choice;
+        System.out.println("Write action (buy,fill,take):");
+        choice=scanner.nextLine();
+        if(choice.equalsIgnoreCase("buy")){
+
+                System.out.println("What do you want to buy? 1-espresso, 2-latte, 3-cappuccino:");
+                int typeOfCoffee=scanner.nextInt();
+                switch (typeOfCoffee){
+                    case 1:
+                    {
+                        System.out.println("You just clicked buy option");
+//                  creating object of espresso
+                        Cup espresso=new Cup(250,60,16,4);
+                        Util.calculateIngredientsAndCost(espresso);
+                    }
+                    break;
+                    case 2: {
+                        System.out.println("You have clicked fill option");
+                        Cup latte = new Cup(350, 75, 20, 7);
+                        Util.calculateIngredientsAndCost(latte);
+                    }
+                    break;
+                    case 3:
+                    {
+                        System.out.println("You hve just clicked take option");
+                        Cup  cappuccino=new Cup(200,100,12,6);
+                        Util.calculateIngredientsAndCost(cappuccino);
+
+                    }
+                    break;
+                    default:
+                        System.out.println("Invalid input");
+                }
+        } else if (choice.equalsIgnoreCase("fill")) {
+
+            Util.addMoreResource(scanner);
+            Util.addMoreResource(scanner);
+
+        }else if (choice.equalsIgnoreCase("take"))
+            MachineCapacity.machineInfo(false);
+
+
     }
 
     public static int numberOfCupsMachineMake(){
@@ -77,4 +131,6 @@ public class Main {
 
         return minValue;
     }
+
+
 }
