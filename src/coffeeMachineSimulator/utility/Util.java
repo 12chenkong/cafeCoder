@@ -1,5 +1,6 @@
 package coffeeMachineSimulator.utility;
 
+import coffeeMachineSimulator.Connection.JdbcUtil;
 import coffeeMachineSimulator.MachineCapacity;
 import coffeeMachineSimulator.coffee_type.Cup;
 
@@ -54,6 +55,10 @@ public class Util {
             int disposable=MachineCapacity.getDisposableCups();
             disposable+=diposableCupsAddition;
             MachineCapacity.setDisposableCups(disposable);
+        JdbcUtil.ResourceInsertion(
+                MachineCapacity.getTotoalBean(),MachineCapacity.getTotalWater(),MachineCapacity.getTotalMilk(),
+                MachineCapacity.getDisposableCups()
+        );
 //        This info of coffee machine
             MachineCapacity.machineInfo(true);
 

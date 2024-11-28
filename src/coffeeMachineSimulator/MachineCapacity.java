@@ -1,5 +1,7 @@
 package coffeeMachineSimulator;
 
+import coffeeMachineSimulator.Connection.JdbcUtil;
+
 public class MachineCapacity {
     private static int totalWater;
     private static int totoalBean;
@@ -50,31 +52,9 @@ public class MachineCapacity {
     }
 
     public static void machineInfo(boolean is_true){
-        System.out.println("The coffee machine has:");
-        System.out.println(getTotalWater()+" ml of water");
-        System.out.println(getTotalMilk()+" ml of milk");
-        System.out.println(getTotoalBean()+" ml of beans");
-        System.out.println(getDisposableCups()+" disposable cups");
-        if(!is_true){
-            int profit=getTotalMoney()-priciple;
-            System.out.println("$"+profit+" of money");
-        }else
-        System.out.println(getTotalMoney()+"$ of money");
+        JdbcUtil.InfoFetching();
     }
 
-    public boolean maxCapacity(){
-        int averageAmount=getTotalWater()+getTotalMilk()+getTotoalBean()/3;
-        boolean is_full=false;
-        if(averageAmount>1000 || getDisposableCups()>20){
-             is_full=true;
-        }
-
-        return is_full;
-    }
-
-    public boolean minCapacity(){
-        return false;
-    }
 
 
     public static int getTotalWater() {

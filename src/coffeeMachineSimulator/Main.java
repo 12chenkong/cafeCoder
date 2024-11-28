@@ -71,7 +71,7 @@ public class Main {
 
          */
 
-        MachineCapacity machineCapacity=new MachineCapacity(400,120,540,550,9);
+        MachineCapacity machineCapacity=new MachineCapacity(0,0,0,0,0);
         MachineCapacity.machineInfo(true);
         String choice;
         System.out.println("Write action (buy,fill,take):");
@@ -109,7 +109,7 @@ public class Main {
         } else if (choice.equalsIgnoreCase("fill")) {
 
             Util.addMoreResource(scanner);
-            Util.addMoreResource(scanner);
+
 
         }else if (choice.equalsIgnoreCase("take"))
             MachineCapacity.machineInfo(false);
