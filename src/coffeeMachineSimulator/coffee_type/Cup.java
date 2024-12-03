@@ -7,12 +7,19 @@ public class Cup {
     private  int cost;
 
     public Cup(){}
+    public Cup(int water,int milk,int bean){
+        this.water=water;
+        this.milk=milk;
+        this.bean=bean;
+    }
     public Cup(int water,int milk,int bean,int cost){
         this.water=water;
         this.milk=milk;
         this.bean=bean;
         this.cost=cost;
+
     }
+
 
     public int getCost() {
         return cost;
@@ -33,5 +40,13 @@ public class Cup {
         System.out.println("Bean:"+this.bean+"Milk:"+this.getMilk()+"water:"+this.getWater());
     }
 
-
+    @Override
+    public String toString() {
+        return "Cup{" +
+                "water=" + water +
+                ", milk=" + milk +
+                ", bean=" + bean +
+                ", cost=" + cost +
+                '}';
+    }
 }

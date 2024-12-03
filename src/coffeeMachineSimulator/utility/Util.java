@@ -6,28 +6,13 @@ import coffeeMachineSimulator.coffee_type.Cup;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
+
 
 public class Util {
 
-    public static void calculateIngredientsAndCost(Cup coffeeType){
-
-
-        final  int oneCupOnly=1;
-            int waterRemainig= MachineCapacity.calResource(coffeeType.getWater(),MachineCapacity.getTotalWater());
-            int milkRemainig =MachineCapacity.calResource(coffeeType.getMilk(),MachineCapacity.getTotalMilk());
-            int beansRemainig =MachineCapacity.calResource(coffeeType.getBean(),MachineCapacity.getTotoalBean());
-            int diposableCupRemainig =MachineCapacity.calResource(oneCupOnly,MachineCapacity.getDisposableCups());
-            int moneyRemainig =MachineCapacity.calcMoney(coffeeType.getCost(),MachineCapacity.getTotalMoney());
-            MachineCapacity.setTotalWater(waterRemainig);
-            MachineCapacity.setTotalMoney(moneyRemainig);
-            MachineCapacity.setTotoalBean(beansRemainig);
-            MachineCapacity.setTotalMilk(milkRemainig);
-            MachineCapacity.setDisposableCups(diposableCupRemainig);
-            MachineCapacity.machineInfo(true);
-
-
-    }
     public static void addMoreResource(Scanner scanner) {
 
         System.out.println("Write how ml of water you want to add");
@@ -63,4 +48,40 @@ public class Util {
             MachineCapacity.machineInfo(true);
 
     }
+
+   public  static  void calcIngredients(){
+        Scanner scanner=new Scanner(System.in);
+        int numOfCups;
+        int waterAmount=0;
+        int milkAmount=0;
+        int beanAmout=0;
+        int totalCupsMachineMake;
+        System.out.println("Write how many ml of water the coffee machine has: ");
+        int water=scanner.nextInt();
+        System.out.println("Write how many ml of milk the coffee machine has: ");
+        int milk=scanner.nextInt();
+        System.out.println("Write how many grams of bean the coffee machine has: ");
+        int beans=scanner.nextInt();
+        System.out.println("Write how many cups of coffee you need: ");
+        numOfCups=scanner.nextInt();
+        List<Cup> cupList=new ArrayList<>();
+        for(int i=0;i<numOfCups;i++){
+            cupList.add(new Cup(water,milk,beans));
+        }
+        System.out.println("For "+numOfCups+" you will need: ");
+        for(int i=0;i<numOfCups;i++){
+            waterAmount+=cupList.get(i).getWater();
+            beanAmout+=cupList.get(i).getBean();
+            milkAmount+=cupList.get(i).getMilk();
+        }
+
+        System.out.println("Water: "+waterAmount+"ml");
+        System.out.println("Bean:"+beanAmout+"g");
+        System.out.println("Milk:"+milkAmount+"ml");
+        System.out.println("\n\n");
+
+
+
+   }
+
 }

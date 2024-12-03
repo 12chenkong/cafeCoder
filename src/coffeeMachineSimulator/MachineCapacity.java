@@ -1,6 +1,12 @@
 package coffeeMachineSimulator;
 
 import coffeeMachineSimulator.Connection.JdbcUtil;
+import coffeeMachineSimulator.Connection.MyJDBC;
+import coffeeMachineSimulator.coffee_type.Cup;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.Statement;
 
 public class MachineCapacity {
     private static int totalWater;
@@ -52,7 +58,7 @@ public class MachineCapacity {
     }
 
     public static void machineInfo(boolean is_true){
-        JdbcUtil.InfoFetching();
+        JdbcUtil.InfoFetching(is_true);
     }
 
 
@@ -61,14 +67,8 @@ public class MachineCapacity {
         return totalWater;
     }
 
-    public static int calResource(int requirement,int resource){
-
-        return resource=resource-requirement;
-
-    }
-
-    public static int calcMoney(int requirement,int resource){
-        return resource=resource+requirement;
+    public static void calResource(Cup cup){
+        JdbcUtil.calcResourceAndCost(cup);
     }
 
 
